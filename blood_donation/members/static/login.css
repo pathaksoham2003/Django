@@ -1,0 +1,55 @@
+
+body{
+    padding:0px;
+    margin:0px;
+    height: 100vh;
+    width:100%;
+    background: linear-gradient(red,yellow);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+body > form {
+    background: linear-gradient(yellow,red);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    padding:20px;
+}
+body > form > h1 {
+color:red;
+}
+body > form > input {
+    all:unset;
+    color:white;
+    border:2px solid white;
+    border-radius: 5px;
+    background: transparent;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: larger;
+}
+body > form > input::placeholder{
+    color:rgb(245, 235, 235);
+}
+body > form > a {
+    margin:5px 0;
+}
+body > form > button {
+    all:unset;
+    padding:5px;
+    border:5px solid yellow;
+    font-size:small;
+    color:yellow;
+    font-weight: 800;
+    border-radius: 10px;
+    margin:10px 0;
+}
+body > form > button:hover{
+    background-color: yellow;
+    color:red;
+    border-color: red;
+}
+
