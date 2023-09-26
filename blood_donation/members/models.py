@@ -2,5 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Users(models.Model):
-    user = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+    name = models.CharField(null=True,max_length=255)
+    age = models.IntegerField(null=True)
+    password = models.CharField(null=True,max_length=255)
+    phone = models.IntegerField(null=True)
+    address =  models.CharField(null=True,max_length=255)
