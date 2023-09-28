@@ -1,0 +1,17 @@
+{% extends "master.html"%}
+{% block title%}BloodDonation{%endblock%}
+{% block content%}
+<h1>Members</h1>
+<ul>
+  {% for x in users %}
+    <li>{{x.id}}</li>
+    <li>{{x.name}}</li>
+    <li>{{x.age}}</li>
+    <li>{{x.password}}</li>
+    <li>{{x.phone}}</li>
+    <li>{{x.address}}</li>
+    <a href="details/{{x.id}}">see profile</a>
+    <hr/>
+  {% endfor %}
+</ul>
+{% endblock %}
