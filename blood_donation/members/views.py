@@ -11,9 +11,9 @@ def register(request):
   template = loader.get_template('register.html')
   return HttpResponse(template.render())
 
-def allUsers(request):
+def all_users(request):
   databaseUsers  = Users.objects.all().values()
-  template = loader.get_template("allUsers.html")
+  template = loader.get_template("all_users.html")
   context = {
     "users":databaseUsers,
   }

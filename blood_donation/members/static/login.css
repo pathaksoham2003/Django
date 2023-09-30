@@ -1,16 +1,15 @@
-
 body{
     padding:0px;
     margin:0px;
     height: 100vh;
     width:100%;
-    background: linear-gradient(red,yellow);
+    background: linear-gradient(rgb(34, 34, 34),rgb(255, 255, 255));
     display:flex;
     justify-content: center;
     align-items: center;
 }
 body > form {
-    background: linear-gradient(yellow,red);
+    background: linear-gradient(rgb(255, 255, 255),rgb(34,34,34));
     display:flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +18,7 @@ body > form {
     padding:20px;
 }
 body > form > h1 {
-color:red;
+color:rgb(34, 34, 34);
 }
 body > form > input {
     all:unset;
@@ -36,20 +35,21 @@ body > form > input::placeholder{
 }
 body > form > a {
     margin:5px 0;
+    color:rgb(255,255,255)
 }
 body > form > button {
     all:unset;
     padding:5px;
-    border:5px solid yellow;
+    border:5px solid rgb(255, 255, 255);
     font-size:small;
-    color:yellow;
+    color:rgb(255, 255, 255);
     font-weight: 800;
     border-radius: 10px;
     margin:10px 0;
 }
 body > form > button:hover{
-    background-color: yellow;
-    color:red;
-    border-color: red;
+    background-color: rgb(255,255,255);
+    color:rgb(34,34,34);
+    border-color: rgb(34,34,34);
 }
 
