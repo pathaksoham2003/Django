@@ -1,28 +1,49 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
 from .models import Users
 
+def index(request):
+  return render(request,"index.html")
+
 def login(request):
-  template = loader.get_template('login.html')
-  return HttpResponse(template.render())
+    return render(request, 'login.html')
 
 def register(request):
-  template = loader.get_template('register.html')
-  return HttpResponse(template.render())
+  return render(request,"register.html")
 
 def all_users(request):
   databaseUsers  = Users.objects.all().values()
-  template = loader.get_template("all_users.html")
   context = {
     "users":databaseUsers,
   }
-  return HttpResponse(template.render(context,request))
+  return render(request,"all_users.html",context)
 
 def details(request , id):
   user = Users.objects.get(id=id)
-  template = loader.get_template("details.html")
   context = {
     "user" : user
   }
-  return HttpResponse(template.render(context,request))
+  return render(request,"details.html",context)
+
+def profile(request):
+  if(request.POST):
+    name = request.POST["name"]
+    age = request.POST["age"]
+    email = request.POST["email"]
+    password = request.POST["password"]
+    phone = request.POST["phone"]
+    
+    context = {
+      "name":name,
+      "age":age,
+      "email":email,
+      "password":password,
+      "phone":phone,
+    }
+    dbname = Users(name=name,age=age,email=email,password=password,phone=phone)
+    dbname.save()
+    print(dbname)
+    return render(request,"profile.html",context)
+  else:
+    print(name,email,password)
+    return render(request,"login.html")
+    

@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="{% static 'register.css' %}">
 </head>
 <body>
-    REGISTER
+    <form action="/profile" method="POST">
+        {% csrf_token %}
+        <input name="name" placeholder="Username" />
+        <input name="age" placeholder="Age"/>
+        <input name="email" placeholder="Email"/>
+        <input name="password" placeholder="Password"/>
+        <input name="phone" placeholder="Phone"/>
+        <button type="submit">LOGIN</button>
+        <a >If you don't have an account</a>
+    </form>
 </body>
 </html>

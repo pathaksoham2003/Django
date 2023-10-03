@@ -8,12 +8,11 @@
     <title>BloodDonation</title>
 </head>
 <body>
-        <form >
-            <h1>
-                Log-In
-            </h1>
-            <input placeholder="Username" />
-            <input placeholder="Password"/>
+        <form action="/profile" method="POST">
+            {% csrf_token %}
+            <input name="username" placeholder="Username" />
+            <input name="email" placeholder="Email"/>
+            <input name="password" placeholder="Password"/>
             <button type="submit">LOGIN</button>
             <a >If you don't have an account</a>
         </form>
