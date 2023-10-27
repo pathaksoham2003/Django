@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Users
+from django.shortcuts import render,redirect
+from .models import Users , Bloods
 
 def index(request):
   return render(request,"index.html")
@@ -9,6 +9,34 @@ def login(request):
 
 def register(request):
   return render(request,"register.html",{"message":""})
+
+def profile(request,id):
+    user = Users.objects.get(id=id)
+    blogs = Bloods.objects.filter(byid=id)
+    context = {
+        "user":{"id":user.id,
+        "name":user.name,
+        "age":user.age,
+        "email":user.email,
+        "phone":user.phone},
+        "blogs":blogs
+    }
+    return render(request,"profile.html",context)
+    
+def create_blog(request,name,id):
+    return render(request,"create_blog.html",{"id":id,"name":name})
+
+def insert_blog(request,name,id):
+  if request.method == 'POST':
+        litresofblood = request.POST["litresofblood"]
+        bloodGroup = request.POST["bloodGroup"]
+        blog = Bloods(litresofblood=litresofblood,bloodGroup=bloodGroup,byid=id ,byuser=name )
+        blog.save()
+  return redirect("/")
+
+def all_blogs(request):
+  context = Bloods.objects.all().values()
+  return render(request,"all_blogs.html",{"context":context})
 
 def registeruser(request):
     if request.method == 'POST':
@@ -31,7 +59,8 @@ def registeruser(request):
         }
         dbname = Users(name=name, age=age, email=email, password=password, phone=phone)
         dbname.save()
-        return render(request, "profile.html", context)
+        user = Users.objects.get(email=email,password=password)
+        return redirect(f"profile/{user.id}")
     else:
         return render(request, "register.html",{"message":"Internal Error"})
 
@@ -40,30 +69,10 @@ def checkuser(request):
       email = request.POST["email"]
       password = request.POST["password"]
       if Users.objects.filter(email=email).filter(password=password).exists():
-         context = Users.objects.filter(email=email).values()
-         return render(request,"profile.html",context)
+         user = Users.objects.get(email=email,password=password)
+         return redirect(f"profile/{user.id}")
       return render(request,"login.html",{"message":"Wrong Credentials"})
       
-   
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def all_users(request):
   databaseUsers  = Users.objects.all().values()
   context = {
